@@ -10,3 +10,5 @@ spec:
     port: 80
     targetPort: 8080
   type: LoadBalancer
+  externalIPs:
+  - 192.168.0.50
