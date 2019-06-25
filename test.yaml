@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/name: load-balancer-example
-  name: hello-world
+  name: stocks
 spec:
   replicas: 5
   selector:
@@ -15,7 +15,7 @@ spec:
         app.kubernetes.io/name: load-balancer-example
     spec:
       containers:
-      - image: gcr.io/google-samples/node-hello:1.0
-        name: hello-world
+      - image: tthebst/stock_picker:1
+        name: stocks
         ports:
         - containerPort: 8080
