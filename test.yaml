@@ -15,7 +15,7 @@ spec:
         app.kubernetes.io/name: load-balancer-example
     spec:
       containers:
-      - image: tthebst/stock_picker:1
+      - image: tthebst/stock_picker:2
         name: stocks
         ports:
         - containerPort: 8080
