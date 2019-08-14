@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: btc
+  labels:
+    app: btc
+spec:
+  type: NodePort #Exposes the service as a node ports
+  ports:
+  - port: 8333
+    name: hello
+    targetPort: 8333
+    nodePort: 30043
+  - port: 8332
+    name: privet
+    targetPort: 8332
+    nodePort: 30443
+  selector:
+    app: btc
+
