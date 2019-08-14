@@ -1,14 +1,13 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: nginx-deployment
-  labels:
-    app: btc
+  name: btc
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: btc
+  serviceName: "btc"
+  replicas: 1 # by default is 1
   template:
     metadata:
       labels:
@@ -19,16 +18,16 @@ spec:
         image: kylemanna/bitcoind:latest
         ports:
         - containerPort: 8333
-	- containerPort: 127.0.0.1:8332
-	volumeMounts:
-        - name: btc
+        - containerPort: 8332
+        volumeMounts:
+        - name: www
           mountPath: /mnt/mydisk
   volumeClaimTemplates:
   - metadata:
-      name: btc_store
+      name: www
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "my-btc-class"
+      storageClassName: "my-bitcoin-class"
       resources:
         requests:
           storage: 300Gi
