@@ -6,6 +6,6 @@ spec:
   selector:
     app: stock
   ports:
-  - protocol: TCP
-    port: 80
+  - name: http
     targetPort: 80
+    port: 80
