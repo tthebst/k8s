@@ -1,10 +1,14 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: testingress
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
-  backend:
-    serviceName: stocksservice
-    servicePort: 80
+  rules:
+    - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: stocksservice
+          servicePort: http
