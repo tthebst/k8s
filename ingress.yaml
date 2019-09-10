@@ -6,7 +6,8 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - http:
+    - host: stockpicker.k8s
+      http:
         paths:
         - path: /
           backend:
