@@ -7,8 +7,8 @@ metadata:
 spec:
   rules:
     - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: stocksservice
-          servicePort: http
+        paths:
+        - path: /
+          backend:
+            serviceName: stocksservice
+            servicePort: http
