@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app.kubernetes.io/name: load-balancer-example
   name: stocks
+  labels:
+    app: stock
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: load-balancer-example
+      app: stock
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: load-balancer-example
+        app: stock
     spec:
       containers:
-      - image: tthebst/stock_picker:2
-        name: stocks
+      - name: stocks_cont
+        image: tthebst/stock_picker:2
         ports:
         - containerPort: 80

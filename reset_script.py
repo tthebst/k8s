@@ -1,16 +1,17 @@
 from fabric import Connection
 from invoke import Responder
 import time
+import sys
 
-old_passwd = "##"
-new_passwd = "##"
-worker_pswd = "##"
-master = Connection(host="pi@192.168.1.100", connect_kwargs={"password": old_passwd})
+old_passwd = "raspberry"
+new_passwd = str(sys.argv[1])
+worker_pswd = "raspberry"
+master = Connection(host="pi@"+str(sys.argv[2]), connect_kwargs={"password": old_passwd})
 sudopass_master = Responder(pattern=r'\[sudo\] password:', response=new_passwd)
 
-worker1 = Connection(host="pi@192.168.1.99", connect_kwargs={"password": worker_pswd})
-worker2 = Connection(host="pi@192.168.1.98", connect_kwargs={"password": worker_pswd})
-worker3 = Connection(host="pi@192.168.1.97", connect_kwargs={"password": worker_pswd})
+worker1 = Connection(host="pi@"+str(sys.argv[3]), connect_kwargs={"password": worker_pswd})
+worker2 = Connection(host="pi@"+str(sys.argv[4]), connect_kwargs={"password": worker_pswd})
+worker3 = Connection(host="pi@"+str(sys.argv[5]), connect_kwargs={"password": worker_pswd})
 print(master, worker1, worker2, worker3)
 sudopass_worker = Responder(pattern=r'\[sudo\] password:', response=worker_pswd)
 
@@ -61,7 +62,10 @@ res = None
 while res is None:
     try:
         # connect
-        master = Connection(host="pi@192.168.1.100", connect_kwargs={"password": old_passwd})
+        master = Connection(host="pi@192.168.1.100", connect_kwargs={"password": new_passwd})
+        worker1 = Connection(host="pi@192.168.1.99", connect_kwargs={"password": worker_pswd})
+        worker2 = Connection(host="pi@192.168.1.98", connect_kwargs={"password": worker_pswd})
+        worker3 = Connection(host="pi@192.168.1.97", connect_kwargs={"password": worker_pswd})
         result = master.run("sudo kubeadm init", pty=True, watchers=[sudopass_master])
         res = True
     except:

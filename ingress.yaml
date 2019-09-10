@@ -2,13 +2,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: test-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /*
-        backend:
-          serviceName: stocks
-          servicePort: 80
+  backend:
+    serviceName: test_service
+    servicePort: 80
