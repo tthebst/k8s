@@ -15,7 +15,7 @@ spec:
         app: stock
     spec:
       containers:
-      - name: stocks_cont
+      - name: stockscont
         image: tthebst/stock_picker:2
         ports:
         - containerPort: 80
