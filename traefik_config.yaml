@@ -26,3 +26,4 @@ data:
 
       [[acme.domains]]
         main = "stockbuilder123.tk"
+        sans = ["www.stockbuilder123.tk"]
