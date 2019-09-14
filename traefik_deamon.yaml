@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: traefik-config
+            name: traefik-configmap
         - name: acme
           hostPath:
             path: /srv/configs/acme.json
@@ -38,7 +38,7 @@ spec:
         name: traefik-ingress-lb
         volumeMounts:
           - mountPath: "/config"
-            name: "config"
+            name: "configmap"
           - mountPath: "acme.json"
             name: "acme"
         ports:
