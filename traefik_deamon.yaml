@@ -25,6 +25,7 @@ spec:
     spec:
       serviceAccountName: traefik-ingress-controller
       terminationGracePeriodSeconds: 60
+      hostNetwork: true
       volumes:
         - name: config
           configMap:
