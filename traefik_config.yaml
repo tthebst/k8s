@@ -17,7 +17,7 @@ data:
 
       [acme]
       email = "gretler.tim@gmail.com"
-      storage = "/acme/acme.json"
+      storage = "traefik/acme/account"
       onHostRule = true
       caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
       entryPoint = "https"

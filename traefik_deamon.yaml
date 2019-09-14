@@ -25,18 +25,12 @@ spec:
         - name: config
           configMap:
             name: traefik-configmap
-        - name: acme
-          hostPath:
-            path: /srv/configs/acme.json
-            type: File
       containers:
       - image: traefik
         name: traefik-ingress-lb
         volumeMounts:
           - mountPath: "/config"
             name: "config"
-          - mountPath: "/acme/acme.json"
-            name: "acme"
         ports:
         - name: http
           containerPort: 80
