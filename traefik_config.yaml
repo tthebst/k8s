@@ -13,7 +13,7 @@ data:
         [entryPoints.https]
         address = ":443"
           [entryPoints.https.tls]
-          
+
       [acme]
       email = "gretler.tim@gmail.com"
       storage = "acme.json"
@@ -23,4 +23,4 @@ data:
         entryPoint = "http"
 
       [[acme.domains]]
-        main = "stockbuilder.ml"
+        main = "stockbuilder123.tk"
