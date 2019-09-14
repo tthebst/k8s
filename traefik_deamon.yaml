@@ -38,7 +38,7 @@ spec:
         name: traefik-ingress-lb
         volumeMounts:
           - mountPath: "/config"
-            name: "configmap"
+            name: "config"
           - mountPath: "acme.json"
             name: "acme"
         ports:
