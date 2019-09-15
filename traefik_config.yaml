@@ -25,4 +25,4 @@ data:
         entryPoint = "http"
 
       [[acme.domains]]
-        main = "*.stockbuilder123.tk"
+        main = "stockbuilder123.tk"
