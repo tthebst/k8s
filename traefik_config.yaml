@@ -21,8 +21,9 @@ data:
       onHostRule = true
       caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
       entryPoint = "https"
-        [acme.httpChallenge]
-        entryPoint = "http"
+        [acme.dnsChallenge]
+          provider = "cloudfare"
+          delayBeforeCheck = 0
 
       [[acme.domains]]
-        main = "stockbuilder123.tk"
+        main = "*.stockbuilder123.tk"

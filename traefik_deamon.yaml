@@ -40,6 +40,11 @@ spec:
           hostPort: 443
         - name: admin
           containerPort: 8080
+        env:
+          - name: CF_API_EMAIL_FILE
+            value: gretler.tim@gmail.com
+          - name: CF_API_KEY_FILE
+            value: 29aa03eaa030a0edee5fbe91cbde374ea6d9b
         args:
         - --configfile=/config/traefik.toml
         - --api
