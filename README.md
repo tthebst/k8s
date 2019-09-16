@@ -27,3 +27,29 @@ Now you have the following configuration:
 -newest k8s installed with overlay network
 
 ### LOADBALANCING
+
+As a application level loadbalancer I deployed traefik. For refrence check traefik.io
+
+First we need to apply RBAC.
+```
+kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
+```
+Now we need to deploy the actual load balancer as a Deamonset to run on all nodes.
+```
+echo -n 'gretler.tim@gmail.com' > ./k8s/username.txt
+echo -n '***********************' > ./k8s/api_token.txt
+kubectl create secret generic cloudfare-dns --namespace=kube-system --from-file=./k8s/username.txt --from-file=./k8s/api_token.txt
+kubectl apply -f traefik_deamon.yaml
+kubectl apply -f traefik_service.yaml
+kubectl apply -f traefik_config.yaml
+```
+This includes configs for dns certifcation from cloudfare (where the dns of my website is located) and rediraction to https.
+
+Finally we need to create an metal load balancer, because we are running kubernetes on bare metal. I'm using metallb. This will assign an local IP to the traefik loadbalancing service. Just run the following commands.
+```
+kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml
+kubectl apply -f metallb_config.yaml
+```
+```
+```
+
