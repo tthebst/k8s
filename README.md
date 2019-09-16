@@ -1,4 +1,4 @@
-# k8s project
+# K8S PROJECT
 
 ![alt text](https://github.com/tthebst/k8s/blob/master/image_of_cluster.jpeg "Logo Title Text 1")
 
@@ -26,7 +26,7 @@ Now you have the following configuration:
 
 -newest k8s installed with overlay network
 
-### LOADBALANCING
+### LOADBALANCING AND TEST SERVICE
 
 As a application level loadbalancer I deployed traefik. For refrence check traefik.io
 
