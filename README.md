@@ -1,4 +1,4 @@
-# k8s
+# k8s project
 
 This is the configuration of my home raspberry pi k8s cluster.
 
@@ -20,4 +20,6 @@ Now you have the following configuration:
 
 -ip worker3: 192.168.1.97
 
--newest k8s installed with overlay snetwork
+-newest k8s installed with overlay network
+
+### LOADBALANCING
