@@ -1,5 +1,9 @@
 # k8s project
 
+![alt text](https://github.com/tthebst/k8s/image_of_cluster.jpeg "Logo Title Text 1")
+
+
+
 This is the configuration of my home raspberry pi k8s cluster.
 
 If you want so use this start with the reset_script.py python script.
