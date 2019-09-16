@@ -42,9 +42,15 @@ spec:
           containerPort: 8080
         env:
           - name: CF_API_EMAIL_FILE
-            value: gretler.tim@gmail.com
+            valueFrom:
+              secretKeyRef:
+                name: cloudfare-dns
+                key: username.txt
           - name: CF_API_KEY_FILE
-            value: 29aa03eaa030a0edee5fbe91cbde374ea6d9b
+            valueFrom:
+              secretKeyRef:
+                name: cloudfare-dns
+                key: api_token.txt
         args:
         - --configfile=/config/traefik.toml
         - --api

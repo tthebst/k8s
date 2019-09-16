@@ -26,4 +26,4 @@ data:
           delayBeforeCheck = 0
 
       [[acme.domains]]
-        main = "*.stockbuilder123.tk"
+        main = "stockbuilder123.tk"
