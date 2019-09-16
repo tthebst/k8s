@@ -1,6 +1,6 @@
 # k8s project
 
-![alt text](https://github.com/tthebst/k8s/image_of_cluster.jpeg "Logo Title Text 1")
+![alt text](https://github.com/tthebst/k8s/blob/master/image_of_cluster.jpeg "Logo Title Text 1")
 
 
 
