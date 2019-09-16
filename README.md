@@ -50,6 +50,19 @@ Finally we need to create an metal load balancer, because we are running kuberne
 kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml
 kubectl apply -f metallb_config.yaml
 ```
+
+We now need to still deploy a actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker) and create a service.
+
 ```
+kubectl apply -f test.yaml
+kubectl apply -f test_service.yaml
 ```
+
+Finally we can deploy the actual kubernetes traefik ingress which routes the traffic to the corresponding service pod. 
+```
+kubectl apply -f ingress.yaml
+```
+
+
+The services served by the loadbalancer can now be accessed inside your local network and with the correct router and DNS setup also from outside.
 
