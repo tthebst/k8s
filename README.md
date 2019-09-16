@@ -13,7 +13,11 @@ You may need to restart the cluster manually by switching it on and off, because
 Now you have the following configuration:
 
 -ip master: 192.168.1.100
+
 -ip worker1: 192.168.1.99
+
 -ip worker2: 192.168.1.98
+
 -ip worker3: 192.168.1.97
+
 -newest k8s installed with overlay snetwork
