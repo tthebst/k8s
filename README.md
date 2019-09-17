@@ -1,3 +1,4 @@
+docker system prune
 # K8S PROJECT
 
 ![alt text](https://github.com/tthebst/k8s/blob/master/image_of_cluster.jpeg "Logo Title Text 1")

@@ -9,3 +9,15 @@ spec:
   - name: http
     targetPort: 80
     port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: groupproject-service
+spec:
+  selector:
+    app: groupproject
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
