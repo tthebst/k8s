@@ -41,3 +41,4 @@ spec:
         image: tthebst/groupproject:latest
         ports:
         - containerPort: 80
+      
