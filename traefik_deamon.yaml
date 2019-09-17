@@ -51,6 +51,16 @@ spec:
               secretKeyRef:
                 name: cloudfare-dns
                 key: api_token.txt
+          - name: CLOUDFLARE_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: cloudfare-dns
+                key: username.txt
+          - name: CLOUDFLARE_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: cloudfare-dns
+                key: api_token.txt
         args:
         - --configfile=/config/traefik.toml
         - --api
