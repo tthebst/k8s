@@ -6,9 +6,10 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: stocksservice
-          servicePort: http
+    - host: stockbuiler123.tk
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: stocksservice
+            servicePort: http
