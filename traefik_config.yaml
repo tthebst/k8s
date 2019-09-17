@@ -25,6 +25,8 @@ data:
           provider = "cloudflare"
           delayBeforeCheck = 0
       [[acme.domains]]
-        main = "stockbuilder123.tk"
+        main = "*.stockbuilder123.tk"
+        sans = ["stockbuilder123.tk"]
       [[acme.domains]]
-        main = "speechrecognition.ml"
+        main = "*.speechrecognition.ml"
+        sans = ["speechrecognition.ml"]
