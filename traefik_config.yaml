@@ -28,5 +28,5 @@ data:
         main = "*.stockbuilder123.tk"
         sans = ["stockbuilder123.tk"]
       [[acme.domains]]
-        main = "*.speechrecognition.tk"
-        sans = ["speechrecognition.tk"]
+        main = "*.speech-recognition.tk"
+        sans = ["speech-recognition.tk"]
