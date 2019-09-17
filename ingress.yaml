@@ -20,14 +20,14 @@ spec:
           backend:
             serviceName: stocksservice
             servicePort: http
-    - host: www.speechrecognition.ml
+    - host: www.speechrecognition.tk
       http:
         paths:
         - path: /
           backend:
             serviceName: groupproject-service
             servicePort: http
-    - host: speechrecognition.ml
+    - host: speechrecognition.tk
       http:
         paths:
         - path: /
