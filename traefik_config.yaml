@@ -7,14 +7,14 @@ metadata:
 data:
   traefik.toml: |
       defaultEntryPoints = ["http", "https"]
-      [entryPoints]
-        [entryPoints.http]
-        address = ":80"
-          [entryPoints.http.redirect]
-          entryPoint = "https"
-        [entryPoints.https]
-        address = ":443"
-          [entryPoints.https.tls]
+        [entryPoints]
+          [entryPoints.http]
+          address = ":80"
+            [entryPoints.http.redirect]
+            entryPoint = "https"
+          [entryPoints.https]
+          address = ":443"
+            [entryPoints.https.tls]
       [acme]
       email = "gretler.tim@gmail.com"
       storage = "acme.json"
@@ -26,3 +26,5 @@ data:
           delayBeforeCheck = 0
       [[acme.domains]]
         main = "stockbuilder123.tk"
+      [[acme.domains]]
+        main = "speechrecognition.tk"

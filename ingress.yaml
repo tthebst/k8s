@@ -6,9 +6,17 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - http:
+    - host: stockbuilder123.tk
+      http:
         paths:
         - path: /
           backend:
             serviceName: stocksservice
+            servicePort: http
+    - host: speechrecognition.ml
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: groupproject-service
             servicePort: http
