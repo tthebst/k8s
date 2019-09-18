@@ -26,7 +26,7 @@ data:
           delayBeforeCheck = 0
       [[acme.domains]]
         main = "*.stockbuilder123.tk"
-        sans = ["stockbuilder123.tk"]
+        sans = ["stockbuilder123.tk","www.stockbuilder123.tk"]
       [[acme.domains]]
         main = "*.speech-recognition.tk"
-        sans = ["speech-recognition.tk"]
+        sans = ["speech-recognition.tk","www.speech-recognition.tk"]
