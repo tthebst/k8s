@@ -1,9 +1,14 @@
-docker system prune
 # K8S PROJECT
 
 ![alt text](https://github.com/tthebst/k8s/blob/master/image_of_cluster.jpeg "Logo Title Text 1")
 
 
+
+**Currently running on cluster:**
+- www.stockbuilder.ch
+- www.speechgroup.ch
+
+### HOW TO START
 
 This is the configuration of my home raspberry pi k8s cluster.
 
@@ -66,4 +71,5 @@ kubectl apply -f ingress.yaml
 
 
 The services served by the loadbalancer can now be accessed inside your local network and with the correct router and DNS setup also from outside.
+
 
