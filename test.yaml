@@ -42,12 +42,12 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: AWS_ACCESS_KEY_ID
+        - name: AWS-ACCESS-KEY-ID
           valueFrom:
             secretKeyRef:
               name: aws
               key: aws_key.txt
-        - name: AWS_SECRET_ACCESS_KEY'
+        - name: AWS-SECRET-ACCESS-KEY'
           valueFrom:
             secretKeyRef:
               name: aws
