@@ -41,4 +41,15 @@ spec:
         image: tthebst/groupproject:latest
         ports:
         - containerPort: 80
-      
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws
+              key: aws_key.txt
+        - name: AWS_SECRET_ACCESS_KEY'
+          valueFrom:
+            secretKeyRef:
+              name: aws
+              key: aws_key_access.txt
+        
