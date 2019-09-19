@@ -47,7 +47,7 @@ spec:
             secretKeyRef:
               name: aws
               key: aws_key.txt
-        - name: AWS-SECRET-ACCESS-KEY'
+        - name: AWS-SECRET-ACCESS-KEY
           valueFrom:
             secretKeyRef:
               name: aws
