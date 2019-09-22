@@ -9,28 +9,42 @@ spec:
     - host: www.stockbuilder123.ch
       http:
         paths:
-        - path: /
-          backend:
-            serviceName: stocksservice
-            servicePort: http
+          - path: /
+            backend:
+              serviceName: stocksservice
+              servicePort: http
     - host: stockbuilder123.ch
       http:
         paths:
-        - path: /
-          backend:
-            serviceName: stocksservice
-            servicePort: http
+          - path: /
+            backend:
+              serviceName: stocksservice
+              servicePort: http
     - host: www.speechgroup.ch
       http:
         paths:
-        - path: /
-          backend:
-            serviceName: groupproject-service
-            servicePort: http
+          - path: /
+            backend:
+              serviceName: groupproject-service
+              servicePort: http
     - host: speechgroup.ch
       http:
         paths:
-        - path: /
-          backend:
-            serviceName: groupproject-service
-            servicePort: http
+          - path: /
+            backend:
+              serviceName: groupproject-service
+              servicePort: http
+    - host: www.timgretler.ch
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: mywebsite-service
+              servicePort: http
+    - host: timgretler.ch
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: mywebsite-service
+              servicePort: http

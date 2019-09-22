@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stocks
+  labels:
+    app: stock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock
+  template:
+    metadata:
+      labels:
+        app: stock
+    spec:
+      containers:
+        - name: stockscont
+          image: tthebst/stock_picker:2
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: groupproject
+  labels:
+    app: groupproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: groupproject
+  template:
+    metadata:
+      labels:
+        app: groupproject
+    spec:
+      containers:
+        - name: groupproject-cont
+          image: tthebst/groupproject:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: AWS-ACCESS-KEY-ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws
+                  key: aws_key.txt
+            - name: AWS-SECRET-ACCESS-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws
+                  key: aws_key_access.txt
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web
+  labels:
+    app: my-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-web
+  template:
+    metadata:
+      labels:
+        app: my-web
+    spec:
+      containers:
+        - name: my-web-cont
+          image: tthebst/my_web:latest
+          ports:
+            - containerPort: 80
