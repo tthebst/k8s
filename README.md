@@ -60,8 +60,8 @@ kubectl apply -f metallb_config.yaml
 We now need to still deploy a actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker) and create a service.
 
 ```
-kubectl apply -f test.yaml
-kubectl apply -f test_service.yaml
+kubectl apply -f deployments.yaml
+kubectl apply -f deployment_service.yaml
 ```
 
 Finally we can deploy the actual kubernetes traefik ingress which routes the traffic to the corresponding service pod. 
