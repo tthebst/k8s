@@ -57,7 +57,7 @@ kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifes
 kubectl apply -f metallb_config.yaml
 ```
 
-We now need to still deploy a actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker) and create a service.
+We now need to still deploy a actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker), [my personal website](https://github.com/tthebst/stock_picker) and my groupproject. The second command will create a service for these deployments.
 
 ```
 kubectl apply -f deployments.yaml
@@ -72,4 +72,9 @@ kubectl apply -f ingress.yaml
 
 The services served by the loadbalancer can now be accessed inside your local network and with the correct router and DNS setup also from outside.
 
+### Storage
+
+Storage is somewhat difficult on kubernetes because of two reasons. First containers generally should be stateless and second kubernetes is cloud native so a lot of solution are not comptible with a local kubernetes cluster.
+
+To workaround these problems I will use AWS s3 storage as a filesystem with s3fs. This isn't optimal because s3 isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain s3 location.
 
