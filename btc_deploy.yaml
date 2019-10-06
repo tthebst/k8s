@@ -29,4 +29,3 @@ spec:
             # directory location on host
             path: /home/pi/clusterdata/bitcoin/
             # this field is optional
-            type: DirectoryOrCreate
