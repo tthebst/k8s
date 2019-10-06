@@ -28,6 +28,6 @@ spec:
         - name: btcdata
           hostPath:
             # directory location on host
-            path: /home/pi/clusterdata/
+            path: /home/pi/clusterdata/bitcoin/
             # this field is optional
-            type: Directory
+            type: DirectoryOrCreate
