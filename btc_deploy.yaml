@@ -22,9 +22,9 @@ spec:
             - containerPort: 8332
           volumeMounts:
             - mountPath: /bitcoin
-              name: btc-data
-        volumes:
-        - name: btc-data
+              name: btcdata
+      volumes:
+        - name: btcdata
           hostPath:
             # directory location on host
             path: /home/pi/clusterdata/bitcoin
