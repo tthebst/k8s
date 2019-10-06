@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: btc-service
+spec:
+  selector:
+    app: btc
+  ports:
+    - name: btc1
+      targetPort: 8333
+      port: 8333
+    - name: btc2
+      targetPort: 8332
+      port: 8332

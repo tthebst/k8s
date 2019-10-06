@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: btc
+  labels:
+    app: btc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: btc
+  template:
+    metadata:
+      labels:
+        app: btc
+    spec:
+      containers:
+        - name: btc-cont
+          image: tthebst/btc:latest
+          ports:
+            - containerPort: 8333
+            - containerPort: 8332
+          volumeMounts:
+            - mountPath: /bitcoin
+              name: btc-data
+        volumes:
+        - name: btc-data
+          hostPath:
+            # directory location on host
+            path: /home/pi/clusterdata/bitcoin
+            # this field is optional
+            type: Directory
