@@ -17,7 +17,6 @@ spec:
       containers:
         - name: btc-cont
           image: tthebst/btc:latest
-          command: ["mkdir /bitcoin"]
           ports:
             - containerPort: 8333
             - containerPort: 8332
