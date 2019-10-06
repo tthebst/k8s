@@ -12,7 +12,7 @@ s3fs mybucket ${HOME}/data_cluster -o passwd_file=${HOME}/.passwd-s3fs
 
 
 ssh pi@192.168.1.99
-
+exit
 sudo apt-get install -y s3fs
 
 exit
@@ -23,7 +23,7 @@ mkdir ${HOME}/data_cluster
 s3fs mybucket ${HOME}/data_cluster -o passwd_file=${HOME}/.passwd-s3fs
 
 ssh pi@192.168.1.98
-
+exit
 sudo apt-get install -y s3fs
 
 exit
@@ -36,7 +36,7 @@ s3fs mybucket ${HOME}/data_cluster -o passwd_file=${HOME}/.passwd-s3fs
 exit
 
 ssh pi@192.168.1.97
-
+exit
 sudo apt-get install -y s3fs
 
 echo $1:$2 > ${HOME}/.passwd-s3fs
