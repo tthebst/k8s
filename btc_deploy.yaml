@@ -28,4 +28,3 @@ spec:
           hostPath:
             # directory location on host
             path: /home/pi/clusterdata/bitcoin
-            type: DirectoryOrCreate
