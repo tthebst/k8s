@@ -14,7 +14,7 @@ sudo rm ${HOME}/.passwd-s3fs
 echo -n $1:$2 > ${HOME}/.passwd-s3fs
 chmod 600 ${HOME}/.passwd-s3fs
 mkdir ${HOME}/clusterdata
-s3fs raspberrycluster ${HOME}/clusterdata -ouid=1001,gid=1001,allow_other,mp_umask=002 -o passwd_file=${HOME}/.passwd-s3fs  -o url="https://s3-eu-central-1.amazonaws.com"
+s3fs raspberrycluster ${HOME}/clusterdata -o allow_other -o passwd_file=${HOME}/.passwd-s3fs  -o url="https://s3-eu-central-1.amazonaws.com"
 ls -l ..
 
 
