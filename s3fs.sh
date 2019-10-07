@@ -7,6 +7,7 @@ sudo apt-get install -y s3fs
 
 sudo umount ../clusterdata/
 sudo rm -r ../clusterdata/
+ls -l ..
 sudo rm -r /etc/fuse.conf
 sudo cp ./fuse.conf /etc/
 sudo rm ${HOME}/.passwd-s3fs
@@ -14,7 +15,7 @@ echo -n $1:$2 > ${HOME}/.passwd-s3fs
 chmod 600 ${HOME}/.passwd-s3fs
 mkdir ${HOME}/clusterdata
 s3fs raspberrycluster ${HOME}/clusterdata -o passwd_file=${HOME}/.passwd-s3fs  -o url="https://s3-eu-central-1.amazonaws.com"
-
+ls -l ..
 
 
 
