@@ -76,12 +76,20 @@ The services served by the loadbalancer can now be accessed inside your local ne
 
 Storage is somewhat difficult on kubernetes because of two reasons. First containers generally should be stateless and second kubernetes is cloud native so a lot of solution are not comptible with a local kubernetes cluster.
 
-To workaround these problems I will use AWS s3 storage as a filesystem with s3fs. This isn't optimal because s3 isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain s3 location. The script s3fs installs all s3fs on all nodes and should be run on the master node but requires that the master ssh-key is in .ssh/authorized_keys in each worker node. Now we can run these commands to deploy a bitcoin node.
+
+
+~~To workaround these problems I will use AWS s3 storage as a filesystem with s3fs. This isn't optimal because s3 isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain s3 location. The script s3fs installs all s3fs on all nodes and should be run on the master node but requires that the master ssh-key is in .ssh/authorized_keys in each worker node. Now we can run these commands to deploy a bitcoin node.~~ Costs are too high to run filesystem on s3 too much sync.
+
+
+
+So we will go for a local solution. To mount the local filesystem we need e hardrive(exfat) and attach it to a worker node (my case worker3). We need to run the following script on the masternode. This will make the harddrive available to all nodes on /home/pi/localfs.
 
 ```
-kubectl apply -f btc_deploy.yaml
-kubectl apply -f btc_serviceyaml
+sh localfs
 ```
+This isn't optimal because the local mounted filesystem isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain local harddrive location. Now we can deploy a bitcoin full node with the following command which will write the blockchain data to the local harddrive.
+```
+kubectly apply -f btc-service.yaml
 
-These command will create a bitcoind container running on kubernetes and are writing the bitcoin data to the mounted s3 bucket. Maybe the cost are high because of the many blocks that need to be downloaded. The costs are too high to sync all the blockchain to s3. So we will go for a local solution.
-
+kubectly apply -f btc-deploy.yaml
+```
