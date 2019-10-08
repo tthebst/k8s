@@ -76,12 +76,12 @@ The services served by the loadbalancer can now be accessed inside your local ne
 
 Storage is somewhat difficult on kubernetes because of two reasons. First containers generally should be stateless and second kubernetes is cloud native so a lot of solution are not comptible with a local kubernetes cluster.
 
-To workaround these problems I will use AWS s3 storage as a filesystem with s3fs. This isn't optimal because s3 isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain s3 location. The script s3fs installs all s3fs on all nodes and should be run on the master node but requires that the master ssh-key is in .ssh/authorized_keys in each worker node. Now we can run these commands to deploy the bitcoin node
+To workaround these problems I will use AWS s3 storage as a filesystem with s3fs. This isn't optimal because s3 isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain s3 location. The script s3fs installs all s3fs on all nodes and should be run on the master node but requires that the master ssh-key is in .ssh/authorized_keys in each worker node. Now we can run these commands to deploy the bitcoin node.
 
 ```
 kubectl apply -f btc_deploy.yaml
 kubectl apply -f btc_serviceyaml
 ```
 
-These command will create a bitcoind container running on kubernetes and are writing the bitcoin data to the mounted s3 bucket. Maybe the cost are high because of the many blocks that need to be downloaded.
+These command will create a bitcoind container running on kubernetes and are writing the bitcoin data to the mounted s3 bucket. Maybe the cost are high because of the many blocks that need to be downloaded. The costs are too high to sync all the blockchain to s3. So we will go for a local solution.
 
