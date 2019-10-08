@@ -27,4 +27,4 @@ spec:
         - name: btcdata
           hostPath:
             # directory location on host
-            path: /home/pi/localfs/btc
+            path: /home/pi/localfs
