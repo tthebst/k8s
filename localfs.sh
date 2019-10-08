@@ -5,4 +5,4 @@
 
 
 #connect to worker1 and add localfs to exports
-ssh 192.168.1.97 'sudo apt-get install exfat-fuse exfat-utils;sudo apt-get install exportfs;echo "/home/pi/localfs            192.168.1.98(rw)"> sudo /etc/exports;echo "/home/localfs            192.168.1.99(rw)"> sudo /etc/exports;echo "/home/localfs            192.168.1.100(rw)">sudo  /etc/exports;exportfs -r;exportfs'
+ssh 192.168.1.97 'sudo apt-get install exfat-fuse exfat-utils;sudo apt install nfs-kernel-server;echo "/home/pi/localfs            192.168.1.98(rw)"> sudo /etc/exports;echo "/home/localfs            192.168.1.99(rw)"> sudo /etc/exports;echo "/home/localfs            192.168.1.100(rw)">sudo  /etc/exports;sudo exportfs -r;sudo exportfs'
