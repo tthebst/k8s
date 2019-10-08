@@ -85,7 +85,7 @@ Storage is somewhat difficult on kubernetes because of two reasons. First contai
 So we will go for a local solution. To mount the local filesystem we need e hardrive(exfat) and attach it to a worker node (my case worker3). We need to run the following script on the masternode. This will make the harddrive available to all nodes on /home/pi/localfs.
 
 ```
-sh localfs
+sh localfs.sh
 ```
 This isn't optimal because the local mounted filesystem isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain local harddrive location. Now we can deploy a bitcoin full node with the following command which will write the blockchain data to the local harddrive.
 ```
