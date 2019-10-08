@@ -23,6 +23,8 @@ spec:
           volumeMounts:
             - mountPath: /bitcoin
               name: btcdata
+          securityContext:
+            privileged: true
       volumes:
         - name: btcdata
           hostPath:
