@@ -7,6 +7,7 @@
 **Currently running on cluster:**
 - www.stockbuilder123.ch
 - www.speechgroup.ch
+- www.timgretler.ch
 
 ### HOW TO START
 
