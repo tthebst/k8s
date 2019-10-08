@@ -14,6 +14,9 @@ spec:
       labels:
         app: btc
     spec:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
       containers:
         - name: btc-cont
           image: tthebst/btc:latest
@@ -23,8 +26,7 @@ spec:
           volumeMounts:
             - mountPath: /bitcoin
               name: btcdata
-          securityContext:
-            privileged: true
+
       volumes:
         - name: btcdata
           hostPath:
