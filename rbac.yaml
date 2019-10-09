@@ -4,7 +4,7 @@ metadata:
   name: cluster-user
   namespace: kubernetes-dashboard
 rules:
-  - apiGroups: [""]
+  - apiGroups: ["*"]
     resources:
       - namespaces
       - endpoints
