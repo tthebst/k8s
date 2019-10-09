@@ -94,3 +94,19 @@ kubectly apply -f btc-service.yaml
 
 kubectly apply -f btc-deploy.yaml
 ```
+
+### Dashboard
+
+To get the kubernetes dashboard run the following command:
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
+
+kubectly apply -f rbac.yaml
+kubectl proxy &
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep my-user | awk '{print $1}')
+```
+
+Now copy the token printed in the console by the last command and visit(http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default). If you want to access the cluster from outside use portforwarding to connect to the masternode:
+```
+ssh -L  localhost:8001:localhost:8001 pi@192.168.1.100
+```
