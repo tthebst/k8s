@@ -23,5 +23,4 @@ roleRef:
   name: cluster-user
 subjects:
   - kind: ServiceAccount
-    name: cluster-user
-    namespace: kubernetes-dashboard
+    name: default
