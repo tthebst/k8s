@@ -27,7 +27,7 @@ metadata:
   labels:
     app: groupproject
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: groupproject
@@ -60,7 +60,7 @@ metadata:
   labels:
     app: my-web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: my-web
