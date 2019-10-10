@@ -17,7 +17,6 @@ data:
     [acme]
     email = "gretler.tim@gmail.com"
     storage = "acme.json"
-    MaxIdleConnsPerHost = -1
     onHostRule = true
     caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
     entryPoint = "https"

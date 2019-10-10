@@ -110,3 +110,10 @@ Now copy the token printed in the console by the last command and visit(http://l
 ```
 ssh -L  localhost:8001:localhost:8001 pi@192.168.1.100
 ```
+
+### Cronjob
+
+Run following command to start a cronjob which checks if websites are still reachable. If not it will send a email to me. 
+```
+kubectl apply -f cronjob.yaml
+```
