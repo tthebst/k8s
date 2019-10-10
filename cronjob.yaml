@@ -1,0 +1,20 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "0 */6 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: hello
+              image: busybox
+              args:
+                - /bin/sh
+                - -c
+                - /usr/bin/wget "www.timgretler.ch" --timeout 30 -O - 2>/dev/null | grep "Tim" || echo "The site is down" | /usr/bin/mail -v -s "Site is down(timgretler.ch)" gretler.tim@gmail.com
+                - /usr/bin/wget "www.speechgroup.ch" --timeout 30 -O - 2>/dev/null | grep "Tim" || echo "The site is down" | /usr/bin/mail -v -s "Site is down(speechgroup.ch)" gretler.tim@gmail.com
+                - /usr/bin/wget "www.stockbuilder123.ch" --timeout 30 -O - 2>/dev/null | grep "PORTFOLIO" || echo "The site is down" | /usr/bin/mail -v -s "Site is down(stockbuilder.ch)" gretler.tim@gmail.com
+          restartPolicy: OnFailure
