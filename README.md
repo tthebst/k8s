@@ -43,8 +43,8 @@ kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examp
 ```
 Now we need to deploy the actual load balancer as a Deamonset to run on all nodes.
 ```
-echo -n 'gretler.tim@gmail.com' > ./k8s/username.txt
-echo -n '***********************' > ./k8s/api_token.txt
+echo -n 'gretler.tim@gmail.com' > /home/pi/username.txt
+echo -n '***********************' > /home/pi/api_token.txt
 kubectl create secret generic cloudfare-dns --namespace=kube-system --from-file=./k8s/username.txt --from-file=./k8s/api_token.txt
 kubectl apply -f traefik_deamon.yaml
 kubectl apply -f traefik_service.yaml
