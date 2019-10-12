@@ -11,7 +11,7 @@ echo -n '$5' > /home/pi/api_token.txt
 echo -n '$6' > /home/pi/aws_id.txt
 echo -n '$7' > /home/pi/aws_secret.txt
 kubectl create secret generic cloudfare-dns  --from-file=/home/pi/username.txt --from-file=/home/pi/api_token.txt
-kubectl create secret generic aws --from-file=/home/pi/aws_id.txt --from-file=/home/pi/aws_secret.txt
+kubectl create secret generic aws --from-file=/home/pi/aws_key.txt --from-file=/home/pi/aws_key_access.txt
 kubectl apply -f traefik_deamon.yaml
 kubectl apply -f traefik_service.yaml
 kubectl apply -f traefik_config.yaml
