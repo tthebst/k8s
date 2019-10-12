@@ -1,6 +1,5 @@
 #run this on master node
-# sh reset_all.sh "new_passwd" "curr ip pi1" "curr ip pi2" "curr ip pi2" "curr ip pi2" "cloudflare api token" "aws id" "aws secret" 
-python3 reset_script.py $1 $2 $3 $4 $5 $6 $7
+# sh reset_all.sh "cloudflare api token" "aws id" "aws secret" 
 
 
 #create RBAC for traefik
