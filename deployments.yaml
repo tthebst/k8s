@@ -75,6 +75,8 @@ spec:
           ports:
             - containerPort: 80
           env:
+            - name: TZ
+              value: "Europe/Amsterdam"
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
