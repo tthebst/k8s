@@ -58,7 +58,7 @@ kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifes
 kubectl apply -f metallb_config.yaml
 ```
 
-We now need to still deploy a actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker), [my personal website](https://github.com/tthebst/stock_picker) and my groupproject. The second command will create a service for these deployments.
+We now need to still deploy a actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker), [my personal website](https://github.com/tthebst/personal_website) and my groupproject. The second command will create a service for these deployments.
 
 ```
 kubectl apply -f deployments.yaml
@@ -112,6 +112,8 @@ ssh -L  localhost:8001:localhost:8001 pi@192.168.1.100
 ```
 
 ### Cronjob
+
+(not working currently)
 
 Run following command to start a cronjob which checks if websites are still reachable. If not it will send a email to me. 
 ```
