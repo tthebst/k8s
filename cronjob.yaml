@@ -14,8 +14,7 @@ spec:
               args:
                 - /bin/sh
                 - -c
-                - /usr/bin/wget "www.asdfsfsffs.ch" --timeout 30 -O - 2>/dev/null | grep "Tim" || echo "The site is down" | /usr/bin/mail -v -s "Site is down(timgretler.ch)" gretler.tim@gmail.com
-                - /usr/bin/wget "www.timgretler.ch" --timeout 30 -O - 2>/dev/null | grep "Tim" || echo "The site is down" | /usr/bin/mail -v -s "Site is down(timgretler.ch)" gretler.tim@gmail.com
-                - /usr/bin/wget "www.speechgroup.ch" --timeout 30 -O - 2>/dev/null | grep "Tim" || echo "The site is down" | /usr/bin/mail -v -s "Site is down(speechgroup.ch)" gretler.tim@gmail.com
-                - /usr/bin/wget "www.stockbuilder123.ch" --timeout 30 -O - 2>/dev/null | grep "PORTFOLIO" || echo "The site is down" | /usr/bin/mail -v -s "Site is down(stockbuilder.ch)" gretler.tim@gmail.com
+                - /usr/bin/curl -Is www.timgretler.ch | grep 200 || echo "The site is down" | /usr/bin/mail -v -s "Site is down(timgretler.ch)" gretler.tim@gmail.com
+                - /usr/bin/curl -Is https://www.speechgroup.ch  | grep 200 || echo "The site is down" | /usr/bin/mail -v -s "Site is down(speechgroup.ch)" gretler.tim@gmail.com
+                - /usr/bin/curl -Is www.stockbuilder123.ch| grep 200 || echo "The site is down" | /usr/bin/mail -v -s "Site is down(stockbuilder.ch)" gretler.tim@gmail.com
           restartPolicy: OnFailure
