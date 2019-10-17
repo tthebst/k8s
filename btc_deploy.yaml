@@ -26,6 +26,10 @@ spec:
           volumeMounts:
             - mountPath: /bitcoin
               name: btcdata
+          lifecycle:
+            preStop:
+              exec:
+          command: ["/bin/sh", "-c", "sudo rm /bitcoin/.lock"]
 
       volumes:
         - name: btcdata
