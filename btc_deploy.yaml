@@ -29,7 +29,7 @@ spec:
           lifecycle:
             preStop:
               exec:
-          command: ["/bin/sh", "-c", "sudo rm /bitcoin/.lock"]
+                command: ["/bin/sh", "-c", "sudo rm /bitcoin/.lock"]
 
       volumes:
         - name: btcdata
