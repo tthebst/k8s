@@ -12,9 +12,9 @@ ssh 192.168.1.99 'rm -r /home/pi/localfs;mkdir /home/pi/localfs;sudo umount /hom
 mkdir ~/localfs 
 sudo sudo apt-get install exfat-fuse exfat-utils
 sudo umount ~/localfs
-sudo mount -o uid=1001,gid=1001 -o umask=0000 -o allow_other 192.168.1.99:/home/pi/localfs ~/localfs
+sudo mount 192.168.1.99:/home/pi/localfs ~/localfs
 echo '192.168.1.99:/home/pi/localfs ~/localfs    exfat-fuse rw 0 0' >>sudo /etc/fstab
-ssh 192.168.1.98 'sudo sudo apt-get install exfat-fuse exfat-utils;mkdir ~/localfs ;sudo umount ~/localfs;sudo mount -ouid=1001,gid=1001 -o umask=0000 -o allow_other 192.168.1.99:/home/pi/localfs ~/localfs;echo "192.168.1.99:/home/pi/localfs ~/localfs    exfat-fuse rw 0 0" >>sudo /etc/fstab'
-ssh 192.168.1.97 'sudo sudo apt-get install exfat-fuse exfat-utils;mkdir ~/localfs ;sudo umount ~/localfs;sudo mount -ouid=1001,gid=1001 -o umask=0000 -o allow_other 192.168.1.99:/home/pi/localfs ~/localfs;echo "192.168.1.99:/home/pi/localfs ~/localfs    exfat-fuse rw 0 0" >>sudo /etc/fstab'
+ssh 192.168.1.98 'sudo sudo apt-get install exfat-fuse exfat-utils;mkdir ~/localfs ;sudo umount ~/localfs;sudo mount 192.168.1.99:/home/pi/localfs ~/localfs;echo "192.168.1.99:/home/pi/localfs ~/localfs    exfat-fuse rw 0 0" >>sudo /etc/fstab'
+ssh 192.168.1.97 'sudo sudo apt-get install exfat-fuse exfat-utils;mkdir ~/localfs ;sudo umount ~/localfs;sudo mount 192.168.1.99:/home/pi/localfs ~/localfs;echo "192.168.1.99:/home/pi/localfs ~/localfs    exfat-fuse rw 0 0" >>sudo /etc/fstab'
 mount -t nfs
 sudo cat /etc/fstab
