@@ -14,7 +14,7 @@
 This is the configuration of my home raspberry pi k8s cluster.
 
 If you want so use this start with the reset_script.py python script.
-This script should be run on your designated master node. Currently script supports 3 worker nodes and 1 master node.
+This script should be run on your local machine and will connect to all nodes. Currently script supports 3 worker nodes and 1 master node.
 
 ```
 python3 <new masternode password> <current ip of master node> <current ip worker 1> <current ip of worker 2> <current ip of worker 3>
@@ -46,19 +46,20 @@ Now we need to deploy the actual load balancer as a Deamonset to run on all node
 echo -n 'gretler.tim@gmail.com' > /home/pi/username.txt
 echo -n '***********************' > /home/pi/api_token.txt
 kubectl create secret generic cloudfare-dns --from-file=./k8s/username.txt --from-file=./k8s/api_token.txt
-kubectl apply -f traefik_deamon.yaml
-kubectl apply -f traefik_service.yaml
-kubectl apply -f traefik_config.yaml
+kubectl apply -f ./traefik/traefik_deamon.yaml
+kubectl apply -f ./traefik/traefik_service.yaml
+kubectl apply -f ./traefik/traefik_config.yaml
 ```
-This includes configs for dns certifcation from cloudfare (where the dns of my website is located) and rediraction to https.
+This includes configs for dns acme certifcation from cloudfare (where the dns of my website is located) and rediraction to https.
 
-Finally we need to create an metal load balancer, because we are running kubernetes on bare metal. I'm using metallb. This will assign an local IP to the traefik loadbalancing service. Just run the following commands.
+Finally we need to create an metal load balancer, because we are running kubernetes on bare metal. I'm using metallb. This will assign an local IP to the traefik loadbalancing service. Just run the following commands. The last command show the currently running services and we see the exposed IP. 
 ```
 kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml
-kubectl apply -f metallb_config.yaml
+kubectl apply -f ./metallb/metallb_config.yaml
+kubectl get svc
 ```
 
-We now need to still deploy a actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker), [my personal website](https://github.com/tthebst/personal_website) and my groupproject. The second command will create a service for these deployments.
+We now need to still deploy an actual service. Following command will deploy [my stockpicker app](https://github.com/tthebst/stock_picker), [my personal website](https://github.com/tthebst/personal_website) and my groupproject. The second command will create a service for these deployments.
 
 ```
 kubectl apply -f deployments.yaml
@@ -86,13 +87,12 @@ Storage is somewhat difficult on kubernetes because of two reasons. First contai
 So we will go for a local solution. To mount the local filesystem we need e hardrive(exfat) and attach it to a worker node (my case worker3). We need to run the following script on the masternode. This will make the harddrive available to all nodes on /home/pi/localfs.
 
 ```
-sh localfs.sh
+sh ./localfs/localfs.sh
 ```
 This isn't optimal because the local mounted filesystem isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain local harddrive location. Now we can deploy a bitcoin full node with the following command which will write the blockchain data to the local harddrive.
 ```
-kubectly apply -f btc-service.yaml
-
-kubectly apply -f btc-deploy.yaml
+kubectly apply -f ./btc/btc-service.yaml
+kubectly apply -f ./btc/btc-deploy.yaml
 ```
 
 ### Dashboard
@@ -118,5 +118,5 @@ This will not work because it is not possible to send mails from a kubernetes po
 
 Run following command to start a cronjob which checks if websites are still reachable. If not it will send a email to me. 
 ```
-kubectl apply -f cronjob.yaml
+kubectl apply -f ./cronjobs/cronjob.yaml
 ```
