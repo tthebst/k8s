@@ -115,5 +115,5 @@ ssh -L  localhost:8001:localhost:8001 pi@192.168.1.100
 
 Follow the instruction from [this post](https://stackoverflow.com/questions/38391412/raspberry-pi-send-mail-from-command-line-using-gmail-smtp-server)! Now you're able to send mails from the raspberry pi master node. Add following line to /etc/crontab
 ```
-
+0  *    * * *   root    sh /home/pi/k8s/cronjobs/cronjob.sh 
 ```
