@@ -5,7 +5,7 @@ metadata:
   labels:
     app: stock
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: stock
@@ -19,6 +19,13 @@ spec:
           image: tthebst/stock_picker:2
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +34,7 @@ metadata:
   labels:
     app: groupproject
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: groupproject
@@ -52,6 +59,13 @@ spec:
                 secretKeyRef:
                   name: aws
                   key: aws_key_access.txt
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "512Mi"
+              cpu: "750m"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -60,7 +74,7 @@ metadata:
   labels:
     app: my-web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: my-web
@@ -87,3 +101,10 @@ spec:
                 secretKeyRef:
                   name: aws
                   key: aws_key_access.txt
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
