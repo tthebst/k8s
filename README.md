@@ -113,10 +113,10 @@ ssh -L  localhost:8001:localhost:8001 pi@192.168.1.100
 
 ### Cronjob
 
-(not working currently)
 This will not work because it is not possible to send mails from a kubernetes pod.
 
 Run following command to start a cronjob which checks if websites are still reachable. If not it will send a email to me. 
 ```
+sudo apt-get install mailutils
 kubectl apply -f ./cronjobs/cronjob.yaml
 ```
