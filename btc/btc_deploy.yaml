@@ -20,7 +20,7 @@ spec:
       initContainers:
         - name: copy-bitcoind-config
           image: busybox
-          command: ["sudo", "rm", "/bitcoin/.lock"]
+          command: ["bash", "rm", "/bitcoin/.lock"]
           volumeMounts:
             - name: btcdata
               mountPath: /bitcoin
