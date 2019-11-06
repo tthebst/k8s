@@ -20,7 +20,8 @@ spec:
       initContainers:
         - name: copy-bitcoind-config
           image: busybox
-          command: ["find / -name .lock -exec rm {} \;"]
+          command: ["/bin/find"]
+          args: ["/","-name", ".lock","-exec","rm","{}","\;"]
           volumeMounts:
             - name: btcdata
               mountPath: /bitcoin
