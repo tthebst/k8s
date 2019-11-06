@@ -21,7 +21,7 @@ spec:
         - name: copy-bitcoind-config
           image: busybox
           command: ["/bin/ls"]
-          args: ["/"]
+          args: ["/bitcoin"]
           volumeMounts:
             - name: btcdata
               mountPath: /bitcoin
