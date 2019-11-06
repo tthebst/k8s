@@ -17,6 +17,13 @@ spec:
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001
+      initContainers:
+        - name: copy-bitcoind-config
+          image: busybox
+          command: [rm", "/bitcoin/.lock"]
+          volumeMounts:
+            - name: btcdata
+              mountPath: /bitcoin
       containers:
         - name: btc-cont
           image: tthebst/btc:latest
@@ -30,7 +37,13 @@ spec:
             preStop:
               exec:
                 command: ["/bin/sh", "-c", "sudo rm /bitcoin/.lock"]
-
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
       volumes:
         - name: btcdata
           hostPath:
