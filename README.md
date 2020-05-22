@@ -117,3 +117,15 @@ Follow the instruction from [this post](https://stackoverflow.com/questions/3839
 ```
 0  *    * * *   root    sh /home/pi/k8s/cronjobs/cronjob.sh 
 ```
+
+
+
+
+### Ansible 
+
+You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries
+
+```
+ansible-galaxy install geerlingguy.docker_arm
+ansible-playbook -i hosts.ini k8s-setup.yml --user=pi  --ask-pass
+```
