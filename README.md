@@ -4,7 +4,7 @@
 
 ### Ansible setup 
 
-** =========THIS IS THE CURRENT WAY TO STUP K8S ON RPI========= **
+**=========THIS IS THE CURRENT WAY TO STUP K8S ON RPI=========**
 
 
 You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP](https://github.com/tthebst/k8s/tree/master/setup)
@@ -13,7 +13,7 @@ You can setup your cluster with Ansible. You only need ansible and the IP's of t
 
 ### HOW TO START
 
-** =========OLD WAY TO SETUP RPI========= **
+**=========OLD WAY TO SETUP RPI=========**
 
 
 This is the configuration of my home raspberry pi k8s cluster.
