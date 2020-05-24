@@ -2,8 +2,19 @@
 
 ![alt text](https://github.com/tthebst/k8s/blob/master/image_of_cluster.jpeg "Logo Title Text 1")
 
+### Ansible setup 
+
+*** THIS IS THE CURRENT WAY TO STUP K8S ON RPI ***
+
+
+You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP](https://github.com/tthebst/k8s/tree/master/setup)
+
+
 
 ### HOW TO START
+
+*** OLD WAY TO SETUP RPI ***
+
 
 This is the configuration of my home raspberry pi k8s cluster.
 
@@ -117,4 +128,4 @@ Follow the instruction from [this post](https://stackoverflow.com/questions/3839
 
 ### Ansible setup 
 
-You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP](https://github.com/tthebst/k8s/setup)
+You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP](https://github.com/tthebst/k8s/tree/master/setup)
