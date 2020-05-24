@@ -1,0 +1,30 @@
+- hosts: master
+  gather_facts: no
+  vars:
+    dns: 192.168.1.1
+  vars_files:
+    - vars.yml
+  become: yes
+
+  tasks:
+    - name: Set authorized key taken from file
+      authorized_key:
+        user: pi
+        state: present
+        key: "{{ lookup('file', '/Users/timgretler/.ssh/id_rsa.pub') }}"
+      become: yes
+- hosts: worker
+  gather_facts: no
+  vars:
+    dns: 192.168.1.1
+  vars_files:
+    - vars.yml
+  become: yes
+
+  tasks:
+    - name: Set authorized key taken from file
+      authorized_key:
+        user: pi
+        state: present
+        key: "{{ lookup('file', '/Users/timgretler/.ssh/id_rsa.pub') }}"
+      become: yes
