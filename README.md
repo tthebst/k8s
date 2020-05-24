@@ -3,12 +3,6 @@
 ![alt text](https://github.com/tthebst/k8s/blob/master/image_of_cluster.jpeg "Logo Title Text 1")
 
 
-
-**Currently running on cluster:**
-- www.stockbuilder123.ch
-- www.speechgroup.ch
-- www.timgretler.ch
-
 ### HOW TO START
 
 This is the configuration of my home raspberry pi k8s cluster.
@@ -121,11 +115,6 @@ Follow the instruction from [this post](https://stackoverflow.com/questions/3839
 
 
 
-### Ansible 
+### Ansible setup 
 
-You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries
-
-```
-ansible-galaxy install geerlingguy.docker_arm
-ansible-playbook -i hosts.ini k8s-setup.yml --user=pi  --ask-pass
-```
+You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP](https://github.com/tthebst/k8s/setup)
