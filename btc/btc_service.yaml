@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: btc-service
+  name: bitcoin
+  namespace: default
 spec:
-  selector:
-    app: btc
   ports:
-    - name: btc1
+    - port: 8333
       targetPort: 8333
-      port: 8333
-    - name: btc2
-      targetPort: 8332
-      port: 8332
+  selector:
+    service: bitcoin
+  type: LoadBalancer
+  externalTrafficPolicy: Local

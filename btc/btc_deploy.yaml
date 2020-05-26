@@ -1,52 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: btc
+  namespace: default
   labels:
-    app: btc
+    service: bitcoin
+  name: bitcoin
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
-  selector:
-    matchLabels:
-      app: btc
   template:
     metadata:
       labels:
-        app: btc
+        service: bitcoin
     spec:
-      securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
-      initContainers:
-        - name: copy-bitcoind-config
-          image: busybox
-          command: ["/bin/ls"]
-          args: ["/bitcoin/core"]
-          volumeMounts:
-            - name: btcdata
-              mountPath: /bitcoin
       containers:
-        - name: btc-cont
-          image: tthebst/btc:latest
-          ports:
-            - containerPort: 8333
-            - containerPort: 8332
-          volumeMounts:
-            - mountPath: /bitcoin
-              name: btcdata
-          lifecycle:
-            preStop:
-              exec:
-                command: ["/bin/sh", "-c", "sudo rm /bitcoin/.lock"]
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
+        image: ruimarinho/bitcoin-core
+        name: bitcoin
+        volumeMounts:
+          - mountPath: /home/bitcoin/.bitcoin
+            name: bitcoin-data
+        resources:
+          requests:
+            memory: "2Gi"
+      restartPolicy: Always
       volumes:
-        - name: btcdata
-          hostPath:
-            # directory location on host
-            path: /home/pi/localfs
+        - name: bitcoin-data
+          persistentVolumeClaim:
+            claimName: nfs-persistent-volume-claim-btc
