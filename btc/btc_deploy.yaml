@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
@@ -20,9 +20,6 @@ spec:
         volumeMounts:
           - mountPath: /home/bitcoin/.bitcoin
             name: bitcoin-data
-        resources:
-          requests:
-            memory: "2Gi"
       restartPolicy: Always
       volumes:
         - name: bitcoin-data
