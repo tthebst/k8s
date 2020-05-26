@@ -26,3 +26,13 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+
+
+
+#### Persitend Volume
+
+Install ansible role to add nfs and add persistent volume
+```
+ansible-galaxy install geerlingguy.nfs
+kubectl apply -f k8s/persistent-volume.yml
+```

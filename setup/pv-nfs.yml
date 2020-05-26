@@ -1,0 +1,36 @@
+- hosts: pv-host
+  gather_facts: yes
+  remote_user: pi
+  vars:
+    dns: 192.168.1.1
+
+  become: yes
+  roles:
+    - geerlingguy.nfs
+
+  tasks:
+    - name: Creates directory
+      file:
+        path: /mnt/k8s-data
+        state: directory
+    - name: install nfs libary
+      apt:
+        name: nfs-kernel-server
+        state: present
+    - name: export to fstab
+      shell: echo "/dev/sda1 /mnt/k8s-volumes ext4 defaults 0 2" >> /etc/fstab
+    - name: Mount up device by label
+      mount:
+        path: /mnt/k8s-data
+        src: /dev/sda1
+        fstype: ext4
+        state: present
+    - name: add nfs
+      include_role:
+        name: geerlingguy.nfs
+      vars:
+        nfs_exports:
+          ["/mnt/k8s-data *(rw,sync,no_root_squash,no_subtree_check)"]
+    - name: export to fstab
+      shell: exportfs -ra
+      become: yes
