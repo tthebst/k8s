@@ -7,7 +7,51 @@
 **=========THIS IS THE CURRENT WAY TO STUP K8S ON RPI=========**
 
 
-You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP](https://github.com/tthebst/k8s/tree/master/setup)
+You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP GUIDE](https://github.com/tthebst/k8s/tree/master/setup)
+
+**============================================================**
+
+### BTC Node
+
+You can run a Bitcoin node on your cluster with following command. You first create a volume clain which is then used by the bitcoin node to store the blockchain data.
+```
+kubectl apply -f bts/pv-claim.yml
+kubectl apply -f bts/btc-deploy.yml
+kubectl apply -f bts/btc-service.yml
+```
+
+
+
+### Dashboard
+
+To get the kubernetes dashboard run the following command:
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
+
+kubectly apply -f rbac.yaml
+kubectl proxy &
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep my-user | awk '{print $1}')
+```
+
+Now copy the token printed in the console by the last command and visit(http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default). If you want to access the cluster from outside use portforwarding to connect to the masternode:
+```
+ssh -L  localhost:8001:localhost:8001 pi@192.168.1.100
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -79,42 +123,7 @@ kubectl apply -f ingress.yaml
 
 The services served by the loadbalancer can now be accessed inside your local network and with the correct router and DNS setup also from outside.
 
-### Storage
 
-Storage is somewhat difficult on kubernetes because of two reasons. First containers generally should be stateless and second kubernetes is cloud native so a lot of solution are not comptible with a local kubernetes cluster.
-
-
-
-~~To workaround these problems I will use AWS s3 storage as a filesystem with s3fs. This isn't optimal because s3 isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain s3 location. The script s3fs installs all s3fs on all nodes and should be run on the master node but requires that the master ssh-key is in .ssh/authorized_keys in each worker node. Now we can run these commands to deploy a bitcoin node.~~ Costs are too high to run filesystem on s3 too much sync.
-
-
-
-So we will go for a local solution. To mount the local filesystem we need e hardrive(exfat) and attach it to a worker node (my case worker3). We need to run the following script on the masternode. This will make the harddrive available to all nodes on /home/pi/localfs.
-
-```
-sh ./localfs/localfs.sh
-```
-This isn't optimal because the local mounted filesystem isn't intended to be used that way and a all sorts of problems can arise like race conditions and inconsistency. So to try to avoid these problems I will only deploy one pod that write to a certain local harddrive location. Now we can deploy a bitcoin full node with the following command which will write the blockchain data to the local harddrive.
-```
-kubectly apply -f ./btc/btc-service.yaml
-kubectly apply -f ./btc/btc-deploy.yaml
-```
-
-### Dashboard
-
-To get the kubernetes dashboard run the following command:
-```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
-
-kubectly apply -f rbac.yaml
-kubectl proxy &
-kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep my-user | awk '{print $1}')
-```
-
-Now copy the token printed in the console by the last command and visit(http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default). If you want to access the cluster from outside use portforwarding to connect to the masternode:
-```
-ssh -L  localhost:8001:localhost:8001 pi@192.168.1.100
-```
 
 ### Cronjob
 
@@ -122,10 +131,3 @@ Follow the instruction from [this post](https://stackoverflow.com/questions/3839
 ```
 0  *    * * *   root    sh /home/pi/k8s/cronjobs/cronjob.sh 
 ```
-
-
-
-
-### Ansible setup 
-
-You can setup your cluster with Ansible. You only need ansible and the IP's of the raspberries. [SETUP](https://github.com/tthebst/k8s/tree/master/setup)

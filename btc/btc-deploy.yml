@@ -17,11 +17,11 @@ spec:
         service: bitcoin
     spec:
       containers:
-        image: ruimarinho/bitcoin-core
-        name: bitcoin
-        volumeMounts:
-          - mountPath: /home/bitcoin/.bitcoin
-            name: bitcoin-data
+        - image: ruimarinho/bitcoin-core
+          name: bitcoin
+          volumeMounts:
+            - mountPath: /home/bitcoin/.bitcoin
+              name: bitcoin-data
       restartPolicy: Always
       volumes:
         - name: bitcoin-data
