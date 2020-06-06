@@ -4,7 +4,7 @@ metadata:
   name: nfs-persistent-volume
 spec:
   capacity:
-    storage: 1500Gi
+    storage: 300Gi
   accessModes:
     - ReadWriteMany
   nfs:
