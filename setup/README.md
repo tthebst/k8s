@@ -33,5 +33,6 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 Install ansible role to add nfs and add persistent volume
 ```
 ansible-galaxy install geerlingguy.nfs
+
 kubectl apply -f k8s/persistent-volume.yml
 ```
